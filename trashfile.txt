@@ -1,0 +1,38 @@
+#include <iostream>
+
+
+
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+using std::ifstream;
+using std::getline;
+
+void perculateUp(int heap[],int size,  int index);
+void insert(int heap[], int size, int key);
+int main(){
+
+
+    return 0;
+}
+
+void percolateUp(int heap[], int size , int index){
+    if (index == 0 || heap[index] < heap[(index - 1) / 2]){
+        return;
+    } else {
+        int parentIndex = (index - 1) / 2;
+        if (heap[index] > heap[parentIndex]){
+            int temp = heap[index];
+            heap[index] = heap[parentIndex];
+            heap[parentIndex] = temp;
+
+            perculateUp(heap, size,parentIndex);
+        }
+    }
+}
+void insert(int heap[], int size, int key){
+    size += 1;
+    heap[size - 1] = key;
+    percolateUp(heap, size, size - 1);
+}
